@@ -17,7 +17,7 @@ const Chat = ({location}) => {
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
     const [users, setUsers] = useState()
-    const ENDPOINT = 'https://react-practise-chatapp-text.herokuapp.com/'
+    const ENDPOINT = 'https://react-practise-for-chatapp.herokuapp.com/'
 
     useEffect(() => {
         const params= queryString.parse(location.search)
@@ -33,7 +33,7 @@ const Chat = ({location}) => {
         })
         return () => {
             socket.emit('disconnect')
-            socket.off()
+            socket.disconnect()
         }
 
         //only if the two values(ENDPOINT,location.search) change,we need to rerender useEffect
@@ -48,7 +48,7 @@ const Chat = ({location}) => {
         })
         return ()=>{
             socket.emit('disconnect')
-            socket.off()
+            socket.disconnect()
         }
     }, [messages])
 
